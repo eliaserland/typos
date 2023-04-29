@@ -1,0 +1,12 @@
+name = "Typos"
+license = "MIT"
+licenselink = "https://github.com/eliaserland/typos/blob/main/LICENSE"
+description = "Typography focused minimal Hugo theme"
+homepage = "http://example.com/"
+tags = []
+features = []
+min_version = "0.41.0"
+
+[author]
+  name = "Elias Olofsson"
+  homepage = "https://twonorm.com"
