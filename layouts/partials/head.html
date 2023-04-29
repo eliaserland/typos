@@ -1,0 +1,15 @@
+{{/* Assets bundles */}}
+{{ $assets := newScratch }}
+{{ $style := resources.Get "css/style.css" }}
+{{ $assets.Add "css" (slice $style) }}
+{{ $custom := resources.Get "css/custom.css" }}
+{{ if $custom }}
+  {{ $assets.Add "css" (slice $custom) }}
+{{ end }}
+{{ $bundle := $assets.Get "css" | resources.Concat "css/bundle.css" | minify | fingerprint }}
+<link
+  rel="stylesheet"
+  href="{{ $bundle.RelPermalink }}"
+  type="text/css"
+  media="all"
+/>
