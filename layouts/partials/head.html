@@ -1,15 +1,20 @@
-{{/* Assets bundles */}}
-{{ $assets := newScratch }}
-{{ $style := resources.Get "css/style.css" }}
-{{ $assets.Add "css" (slice $style) }}
-{{ $custom := resources.Get "css/custom.css" }}
-{{ if $custom }}
-  {{ $assets.Add "css" (slice $custom) }}
-{{ end }}
-{{ $bundle := $assets.Get "css" | resources.Concat "css/bundle.css" | minify | fingerprint }}
-<link
-  rel="stylesheet"
-  href="{{ $bundle.RelPermalink }}"
-  type="text/css"
-  media="all"
-/>
+<head>
+  <html lang="{{ .Site.LanguageCode }}">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{/* Assets bundles */}}
+  {{ $assets := newScratch }}
+  {{ $style := resources.Get "css/style.css" }}
+  {{ $assets.Add "css" (slice $style) }}
+  {{ $custom := resources.Get "css/custom.css" }}
+  {{ if $custom }}
+    {{ $assets.Add "css" (slice $custom) }}
+  {{ end }}
+  {{ $bundle := $assets.Get "css" | resources.Concat "css/bundle.css" | minify | fingerprint }}
+  <link
+    rel="stylesheet"
+    href="{{ $bundle.RelPermalink }}"
+    type="text/css"
+    media="all"
+  />
+</head>
