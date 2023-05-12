@@ -1,37 +1,24 @@
-* {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
 }
 
 html {
-  /* Dynamic font size */
-  --font-size-base: clamp(1rem, 0.6818vw + 0.8295rem, 1.375rem);
-  /* Font colors */
+  color-scheme: light dark;
+  --font-size-base: clamp(1rem, 1.250vw + 0.625rem, 1.375rem);
   --font-link-active: #777;
-  --font-color: black;
-  /* Background colors */
-  --background-color: white;
-  --background-link-active: #ffffff;
-  --background-link-hover: #f2e2e2;
-  /* General properties */
   --link-fade-duration: 0.1s;
+
 }
 
 body {
-  /* Font settings */
   font-size: var(--font-size-base);
+  /* Font settings */
   line-height: 1.45;
   text-rendering: optimizeLegibility;
   font-feature-settings: normal;
-  color: var(--font-color);
   font-variant-numeric: oldstyle-nums;
-
-  /* Layout */
-  min-height: 100vh;
-  max-width: 1000px;
-  margin: 0 auto;
-  background-color: var(--background-color);
-  padding: 1rem;
-
   /* Hyphenation */
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -40,45 +27,32 @@ body {
   hyphens: auto;
 }
 
-div#content {
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
-
-  max-width: 49ch;
-  /* margin-left: 1rem; */
-  /* margin-right: 1rem; */
-}
-
-main {
-  max-width: 700px;
-}
-
-/* use small-cap alternate glyphs */
-.smallcaps {
-  font-feature-settings: "smcp" on;
+main,
+footer,
+header{
+  width: min(50ch, 100% - 2rem);
+  margin-inline: auto;
 }
 
 a {
   text-decoration: none;
   color: inherit;
-  border-radius: 0.4em;
+  border-radius: 0.1em;
   transition-property: background;
   transition-duration: var(--link-fade-duration);
 }
 
-a:focus:not(.heading), a:hover:not(.heading) {
-  background: var(--background-link-hover);
+a:focus-visible:not(.heading),
+a:hover:not(.heading) {
   transition-property: background;
   transition-duration: var(--link-fade-duration);
 }
 
 a:active {
   color: var(--font-link-active);
-  background: var(--background-link-active);
 }
 
-/* External links */
+/* External links - append link icon */
 a[target]::after {
   content: "";
   margin-left: 0.2em; /* spacing */
@@ -89,18 +63,25 @@ a[target]::after {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3C!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --%3E%3Cpath fill='%23900' d='M352 0c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9L370.7 96 201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L416 141.3l41.4 41.4c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6V32c0-17.7-14.3-32-32-32H352zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z'/%3E%3C/svg%3E");
 }
 
-/* Internal links */
+/* Internal links - change link font to smallcaps */
 a:not([target]) {
   font-feature-settings: "c2sc" on;
+  letter-spacing: normal;
 }
 
-/* Heading links */
-a.heading:hover::after, a.heading:focus::after {
+/* Heading links - append gray hash */
+a.heading:hover::after,
+a.heading:focus-visible::after {
   content: "#";
   color: #999;
   margin-left: 0.1em;
   top: -0.05em;
   position: relative;
+}
+
+/* use small-cap alternate glyphs */
+.smallcaps {
+  font-feature-settings: "smcp" on;
 }
 
 p {
@@ -124,13 +105,13 @@ h2 {
   margin-bottom: 0.4rem;
 }
 h3 {
-  font-size: var(--step-3);
+  font-size: 100%;
 }
 h4 {
-  font-size: var(--step-2);
+  font-size: 100%;
 }
 h5 {
-  font-size: var(--step-1);
+  font-size: 100%;
 }
 
 h1,h2,h3,h4,h5 {
